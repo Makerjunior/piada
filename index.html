@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fun page with jokes using the JokeAPI">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <meta property="og:title" content="Piadas Engraçadas" />
+    <meta property="og:description" content="Piadas Engraçadas." />
+    <meta property="og:image" content="https://github.com/Makerjunior/piadas/blob/main/logo.png?raw=true" />
+    <meta property="og:url" content="https://github.com/Makerjunior/piadas/blob/main/logo.png?raw=true" />
+    <title>Piadas</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Animate.css CDN for animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+    <!-- FontAwesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Translate widget script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'pt,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        /* Hide the language selector (dropdown) */
+        .goog-te-menu-frame {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center min-h-screen py-10 px-4">
+
+    <div class="bg-white shadow-lg rounded-xl w-full sm:max-w-lg p-6 animate__animated animate__fadeIn">
+
+        <!-- Button at the top, centered -->
+        <div class="flex justify-center mb-6">
+            <button id="new-joke-btn" class="btn bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 transition-all duration-300 focus:outline-none">
+                New Joke
+            </button>
+        </div>
+
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <h1 class="text-3xl font-semibold text-gray-800">Fun Jokes</h1>
+            <p class="text-lg text-gray-500">Get a random joke anytime!</p>
+        </header>
+
+        <h1 class="text-center text-xl text-gray-600 mb-4">Don’t forget to activate translation</h1>
+
+        <!-- Main Content -->
+        <main>
+            <div id="joke-container" class="bg-gray-50 p-6 rounded-lg shadow-md mb-4 hidden animate__animated animate__fadeInUp">
+                <p id="joke-text" class="text-xl text-gray-700">Click below to hear a joke!</p>
+            </div>
+        </main>
+
+     
+
+        <!-- Footer with Link to YouTube Channel -->
+        <footer class="text-center mt-8 text-gray-600 text-lg">
+            <p>&copy; 2024 Mente Maker | All Rights Reserved</p>
+            <p class="mt-2 flex items-center justify-center space-x-2">
+                <a href="https://www.youtube.com/channel/UCdHR_M4vqK1rtKo56RMQ9tQ" target="_blank" class="text-blue-500 hover:text-blue-700 flex items-center space-x-2">
+                    <i class="fab fa-youtube text-xl text-red-600"></i>
+                    <span>Visit our YouTube Channel</span>
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Function to fetch a random joke from the API
+        const fetchJoke = async () => {
+            try {
+                // Requesting a joke from JokeAPI
+                const response = await fetch('https://v2.jokeapi.dev/joke/Any?type=single');
+                const data = await response.json();
+                
+                // Checking if the response contains a joke
+                if (data.joke) {
+                    document.getElementById('joke-text').innerText = data.joke;
+                } else {
+                    document.getElementById('joke-text').innerText = "Sorry, we couldn't find a joke right now!";
+                }
+
+                // Show the joke container with animation
+                const jokeContainer = document.getElementById('joke-container');
+                jokeContainer.classList.remove('hidden');
+                jokeContainer.classList.add('animate__fadeInUp'); // Add fade-in-up animation
+
+                // Force translation after loading the joke
+                setTimeout(() => {
+                    googleTranslateElementInit();
+                }, 2000); // Wait 2 seconds to make sure the joke has loaded before translating
+            } catch (error) {
+                document.getElementById('joke-text').innerText = "Error loading joke. Please try again!";
+                console.error("Error fetching joke:", error);
+            }
+        };
+
+        // Adding the event listener to the button to fetch a new joke
+        document.getElementById('new-joke-btn').addEventListener('click', fetchJoke);
+    </script>
+
+</body>
+
+</html>
