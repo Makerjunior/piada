@@ -27,10 +27,14 @@
 
 <body class="bg-gray-100 flex justify-center items-center min-h-screen py-10 px-4">
 
-    <div class="bg-white shadow-lg rounded-xl w-full sm:max-w-lg p-6 animate__animated animate__fadeIn">
+    <div class="bg-white shadow-lg rounded-xl w-full sm:max-w-lg p-6 animate_animated animate_fadeIn">
 
         <!-- Botão no topo, centralizado -->
-        <div class="flex justify-center mb-6">
+        <div class="flex justify-between mb-6">
+            <button id="list-joke-btn" disabled
+                class="btn bg-transparent border-gray-500 text-gray-500 opacity-50 border-2 p-4 rounded-lg visited:bg-transparent active:bg-transparent transition-all duration-300 focus:outline-none">
+                Piadas Anteriores
+            </button>
             <button id="new-joke-btn"
                 class="btn bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 transition-all duration-300 focus:outline-none">
                 Nova Piada
@@ -46,12 +50,10 @@
             <p class="text-lg text-gray-500">Receba uma piada aleatória a qualquer momento!</p>
         </header>
 
-
-
         <!-- Conteúdo principal -->
         <main>
             <div id="joke-container"
-                class="bg-gray-50 p-6 rounded-lg shadow-md mb-4 hidden animate__animated animate__fadeInUp">
+                class="bg-gray-50 p-6 rounded-lg shadow-md mb-4 hidden animate_animated animate_fadeInUp">
                 <p id="joke-text" class="text-xl text-gray-700">Clique abaixo para ouvir uma piada!</p>
             </div>
         </main>
