@@ -71,6 +71,13 @@
 
     <script src="./src/scripts/tradutor.js"></script>
     <script defer>
+        // Elementos do HTML
+        const btnListJoke = document.getElementById('list-joke-btn');
+        const btnNewJoke = document.getElementById('new-joke-btn')
+        const jokeText = document.getElementById('joke-text');
+        const loadingBarContainer = document.getElementById('loading-bar-container');
+        const jokeContainer = document.getElementById('joke-container');
+        
         // Função para buscar uma piada aleatória da API
         const fetchJoke = async () => {
             try {
