@@ -77,7 +77,24 @@
         const jokeText = document.getElementById('joke-text');
         const loadingBarContainer = document.getElementById('loading-bar-container');
         const jokeContainer = document.getElementById('joke-container');
-        
+
+        // Guardar piadas
+        const jokeList = []
+
+        // Mostrar piadas anteriores
+        let arrayControl = 0;
+        async function showJokeList() {
+            if (jokeList.length > 1) {
+                jokeText.innerText = jokeList[arrayControl];
+                arrayControl--;
+                if (arrayControl < 0) arrayControl = jokeList.length - 1;
+            } else {
+                await fetchJoke();
+            }
+            // Chama novamente o automatizador de piadas
+            automaticFetch();
+        }
+
         // Função para buscar uma piada aleatória da API
         const fetchJoke = async () => {
             try {
