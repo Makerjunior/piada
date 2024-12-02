@@ -115,13 +115,17 @@
                 // Exibir a piada traduzida
                 document.getElementById('joke-text').innerText = translatedJoke;
 
+                // Atualizar a lista de piadas
+                jokeList.push(translatedJoke);
+                arrayControl = jokeList.length - 2; // Pega a penúltima posição
+                
                 // Mostrar o botão de piadas anteriores
                 if (jokeList.length > 1) {
                     btnListJoke.disabled = false;
                     btnListJoke.classList.remove('border-gray-500', 'text-gray-500', 'opacity-50');
                     btnListJoke.classList.add('border-blue-500', 'text-blue-500', 'opacity-100', 'hover:border-blue-600', 'hover:text-blue-600');
                 }
-
+                
                 // Mostrar o contêiner da piada com animação
                 const jokeContainer = document.getElementById('joke-container');
                 jokeContainer.classList.remove('hidden');
@@ -168,8 +172,8 @@
             }
         };
 
-        // Chamada automática de piada
-        let timer = 0;
+                // Chamada automática de piada
+                let timer = 0;
         const segundos = 10; // Ajuste o tempo da chamada das piadas
         function automaticFetch() {
             if (timer) clearInterval(timer);
