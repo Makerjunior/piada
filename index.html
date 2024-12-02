@@ -161,6 +161,17 @@
             }
         };
 
+                // Chamada automática de piada
+                let timer = 0;
+        const segundos = 10; // Ajuste o tempo da chamada das piadas
+        function automaticFetch() {
+            if (timer) clearInterval(timer);
+            timer = setInterval(() => {
+                fetchJoke();
+            }, segundos * 1000)
+        }
+        automaticFetch()
+        
         // Adicionando o ouvinte de evento ao botão
         btnNewJoke.addEventListener('click', fetchJoke);
         btnListJoke.addEventListener('click', showJokeList)
