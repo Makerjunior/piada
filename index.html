@@ -21,55 +21,25 @@
     <!-- FontAwesome CDN para ícones -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    <style>
-        /* Estilo da barra de carregamento com efeito "pulse" */
-        .loading-bar-container {
-            width: 100%;
-            height: 10px;
-            background-color: #f3f4f6;
-            border-radius: 5px;
-            overflow: hidden;
-            display: none;
-        }
-
-        .loading-bar {
-            width: 0;
-            height: 100%;
-            background-color: #4CAF50;
-            border-radius: 5px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                width: 0%;
-            }
-            50% {
-                width: 60%;
-            }
-            100% {
-                width: 100%;
-            }
-        }
-    </style>
+    <!-- CSS do projeto -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="bg-gray-100 flex justify-center items-center min-h-screen py-10 px-4">
 
     <div class="bg-white shadow-lg rounded-xl w-full sm:max-w-lg p-6 animate__animated animate__fadeIn">
 
-     
-
         <!-- Botão no topo, centralizado -->
         <div class="flex justify-center mb-6">
-            <button id="new-joke-btn" class="btn bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 transition-all duration-300 focus:outline-none">
+            <button id="new-joke-btn"
+                class="btn bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 transition-all duration-300 focus:outline-none">
                 Nova Piada
             </button>
         </div><br>
-   <!-- Barra de carregamento -->
-   <div id="loading-bar-container" class="loading-bar-container mt-3">
-    <div id="loading-bar" class="loading-bar"></div>
-</div>
+        <!-- Barra de carregamento -->
+        <div id="loading-bar-container" class="loading-bar-container mt-3">
+            <div id="loading-bar" class="loading-bar"></div>
+        </div>
         <!-- Cabeçalho -->
         <header class="text-center mb-6">
             <h1 class="text-3xl font-semibold text-gray-800">Piadas Divertidas</h1>
@@ -80,7 +50,8 @@
 
         <!-- Conteúdo principal -->
         <main>
-            <div id="joke-container" class="bg-gray-50 p-6 rounded-lg shadow-md mb-4 hidden animate__animated animate__fadeInUp">
+            <div id="joke-container"
+                class="bg-gray-50 p-6 rounded-lg shadow-md mb-4 hidden animate__animated animate__fadeInUp">
                 <p id="joke-text" class="text-xl text-gray-700">Clique abaixo para ouvir uma piada!</p>
             </div>
         </main>
@@ -89,7 +60,8 @@
         <footer class="text-center mt-8 text-gray-600 text-lg">
             <p>&copy; 2024 Mente Maker | Todos os direitos reservados</p>
             <p class="mt-2 flex items-center justify-center space-x-2">
-                <a href="https://www.youtube.com/channel/UCdHR_M4vqK1rtKo56RMQ9tQ" target="_blank" class="text-blue-500 hover:text-blue-700 flex items-center space-x-2">
+                <a href="https://www.youtube.com/channel/UCdHR_M4vqK1rtKo56RMQ9tQ" target="_blank"
+                    class="text-blue-500 hover:text-blue-700 flex items-center space-x-2">
                     <i class="fab fa-youtube text-xl text-red-600"></i>
                     <span>Visite nosso canal no YouTube</span>
                 </a>
@@ -97,6 +69,7 @@
         </footer>
     </div>
 
+    <script src="./src/scripts/tradutor.js"></script>
     <script>
         // Função para buscar uma piada aleatória da API
         const fetchJoke = async () => {
@@ -108,7 +81,7 @@
                 // Solicitando uma piada da JokeAPI
                 const response = await fetch('https://v2.jokeapi.dev/joke/Any?type=single');
                 const data = await response.json();
-                
+
                 let joke = data.joke || "Desculpe, não conseguimos encontrar uma piada agora!";
 
                 // Traduzir a piada usando a API MenteMaker
