@@ -161,8 +161,9 @@
             }
         };
 
-        // Adicionando o ouvinte de evento ao botão para buscar uma nova piada
-        document.getElementById('new-joke-btn').addEventListener('click', fetchJoke);
+        // Adicionando o ouvinte de evento ao botão
+        btnNewJoke.addEventListener('click', fetchJoke);
+        btnListJoke.addEventListener('click', showJokeList)
     </script>
 
 </body>
